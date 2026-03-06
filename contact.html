@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-  contact.html - Contact Page
+          Contact Page
   Dhuha Alghamdi Personal Website
   CPIT405 - Internet Applications
 -->
@@ -12,173 +12,6 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg:#ffffff; --bg-sidebar:#fdf6f9; --bg-card:#fff0f5;
-      --pink:#e8739a; --pink-light:#f5b8ce; --pink-pale:#fde8f0; --pink-dark:#c45580;
-      --text-main:#2d2d2d; --text-sec:#666; --text-muted:#aaa;
-      --border:#f0d0dc;
-      --font-display:'Playfair Display',Georgia,serif;
-      --font-body:'Inter',Arial,sans-serif;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-
-    /* Body: background image not solid color - project requirement */
-    body{
-      font-family:var(--font-body);background-color:var(--bg);
-      color:var(--text-main);font-size:15px;line-height:1.7;
-      background-image:
-        radial-gradient(ellipse at 90% 10%,rgba(232,115,154,.07) 0%,transparent 50%),
-        radial-gradient(ellipse at 10% 90%,rgba(245,184,206,.08) 0%,transparent 50%),
-        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e8739a' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3Ccircle cx='0' cy='0' r='2'/%3E%3Ccircle cx='60' cy='60' r='2'/%3E%3C/g%3E%3C/svg%3E");
-    }
-
-    /* Grid layout - project requirement */
-    .page-wrapper{
-      display:grid;
-      grid-template-columns:280px 1fr;
-      grid-template-rows:60px 1fr auto;
-      grid-template-areas:"sidebar header" "sidebar main" "sidebar footer";
-      min-height:100vh;
-    }
-
-    /* Sidebar */
-    .sidebar{
-      grid-area:sidebar;background:var(--bg-sidebar);
-      border-right:1.5px solid var(--border);
-      padding:2rem 1.4rem;
-      display:flex;flex-direction:column;align-items:center;gap:1.1rem;
-      position:sticky;top:0;height:100vh;overflow-y:auto;
-    }
-
-    /* Rounded profile image - bonus requirement */
-    .profile-pic{
-      width:115px;height:115px;border-radius:50%;
-      object-fit:cover;border:3px solid var(--pink-light);
-      animation:pinkGlow 3s ease-in-out infinite;flex-shrink:0;
-    }
-
-    /* CSS animation - project requirement */
-    @keyframes pinkGlow{
-      0%  {border-color:var(--pink-light);box-shadow:0 0 12px rgba(232,115,154,.25);}
-      50% {border-color:var(--pink);      box-shadow:0 0 22px rgba(232,115,154,.45);}
-      100%{border-color:var(--pink-light);box-shadow:0 0 12px rgba(232,115,154,.25);}
-    }
-
-    .sidebar-name{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--text-main);text-align:center;}
-    .sidebar-role{font-size:11px;color:var(--pink);text-align:center;letter-spacing:.07em;text-transform:uppercase;margin-top:-.7rem;}
-    .sidebar-divider{width:100%;height:1px;background:var(--border);}
-    .sidebar-label{font-size:10px;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;align-self:flex-start;}
-    .sidebar-links{width:100%;display:flex;flex-direction:column;gap:.5rem;}
-
-    /* Remove underline from all links - project requirement */
-    .sidebar-links a,nav a,.social-icons a{text-decoration:none;}
-
-    .sidebar-links a{font-size:12px;color:var(--text-sec);display:flex;align-items:flex-start;gap:.45rem;transition:color .2s;word-break:break-all;}
-    .sidebar-links a i{margin-top:3px;flex-shrink:0;color:var(--pink-light);}
-    .sidebar-links a:hover{color:var(--pink-dark);}
-
-    /* Social icons hover - project requirement */
-    .social-icons{display:flex;gap:.6rem;}
-    .social-icons a{
-      width:34px;height:34px;border-radius:50%;
-      background:var(--pink-pale);border:1px solid var(--border);
-      display:flex;align-items:center;justify-content:center;
-      color:var(--pink);font-size:14px;transition:all .28s ease;
-    }
-    .social-icons a:hover{background:var(--pink);color:white;transform:translateY(-3px);box-shadow:0 5px 14px rgba(232,115,154,.35);}
-
-    /* Sticky header - project requirement */
-    header{
-      grid-area:header;position:sticky;top:0;z-index:200;
-      background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
-      border-bottom:1.5px solid var(--border);
-      display:flex;align-items:center;justify-content:flex-end;padding:0 2.5rem;
-    }
-    nav{display:flex;gap:.35rem;}
-    nav a{
-      font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
-      color:var(--text-sec);padding:.4rem .9rem;border-radius:20px;border:1.5px solid transparent;
-      transition:all .22s;
-    }
-    nav a:hover,nav a.active{color:var(--pink-dark);background:var(--pink-pale);border-color:var(--pink-light);}
-
-    /* Main */
-    main{grid-area:main;padding:2.8rem 3rem;}
-
-    .section-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;color:var(--text-main);margin-bottom:.3rem;}
-    .section-bar{width:40px;height:2.5px;background:var(--pink);border-radius:2px;margin-bottom:1.6rem;}
-    .section-sub{font-size:12px;color:var(--pink);letter-spacing:.07em;text-transform:uppercase;margin-bottom:1.6rem;}
-
-    /* Contact form */
-    .contact-form{
-      max-width:580px;background:var(--bg-card);
-      border:1.5px solid var(--border);border-radius:14px;padding:2.2rem;
-    }
-
-    .form-group{margin-bottom:1.3rem;}
-
-    .form-group label{
-      display:block;font-size:11.5px;color:var(--text-muted);
-      letter-spacing:.09em;text-transform:uppercase;margin-bottom:.45rem;
-    }
-
-    /* Form inputs */
-    .form-group input,
-    .form-group textarea{
-      width:100%;background:#fff;
-      border:1.5px solid var(--border);border-radius:8px;
-      padding:.7rem .95rem;color:var(--text-main);
-      font-family:var(--font-body);font-size:14px;outline:none;
-      transition:border-color .25s,box-shadow .25s;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus{
-      border-color:var(--pink);
-      box-shadow:0 0 0 3px rgba(232,115,154,.12);
-    }
-    .form-group textarea{resize:vertical;min-height:200px;}
-
-    /* Radio buttons - project requirement */
-    .radio-group{display:flex;gap:1.5rem;margin-top:.3rem;}
-    .radio-group label{
-      display:flex;align-items:center;gap:.5rem;
-      font-size:14px;color:var(--text-sec);
-      text-transform:none;letter-spacing:0;cursor:pointer;
-    }
-    .radio-group input[type="radio"]{width:auto;accent-color:var(--pink);}
-
-    /* Submit button with CSS transition - project requirement */
-    .submit-btn{
-      background:var(--pink);
-      color:white;border:none;
-      padding:.8rem 2.2rem;border-radius:8px;
-      font-family:var(--font-body);font-size:13.5px;font-weight:500;
-      letter-spacing:.07em;text-transform:uppercase;cursor:pointer;
-      transition:background .3s ease,transform .2s,box-shadow .3s;
-    }
-    .submit-btn:hover{
-      background:var(--pink-dark);
-      transform:translateY(-2px);
-      box-shadow:0 8px 20px rgba(232,115,154,.35);
-    }
-    .submit-btn:active{transform:translateY(0);}
-
-    /* Footer - always at bottom - project requirement */
-    footer{
-      grid-area:footer;background:var(--bg-sidebar);
-      border-top:1.5px solid var(--border);
-      padding:1rem 3rem;text-align:center;font-size:12px;color:var(--text-muted);
-    }
-
-    /* Responsive - project requirement */
-    @media(max-width:768px){
-      .page-wrapper{grid-template-columns:1fr;grid-template-areas:"header" "sidebar" "main" "footer";}
-      .sidebar{position:static;height:auto;flex-direction:row;flex-wrap:wrap;justify-content:center;}
-      main{padding:1.8rem 1rem;}
-    }
-  </style>
 </head>
 <body>
 <div class="page-wrapper">
@@ -229,7 +62,7 @@
         <input type="text" id="name" name="name" placeholder="Your full name" required>
       </div>
 
-      <!-- Email - optional - type="email" HTML5 validation - project requirement -->
+      <!-- Email - type="email" HTML5 validation - project requirement -->
       <div class="form-group">
         <label for="email">Email <span style="color:var(--text-muted);font-size:11px;">(optional)</span></label>
         <input type="email" id="email" name="email" placeholder="your@email.com">
@@ -264,9 +97,9 @@
     </p>
   </main>
 
-  <!-- Footer - always at bottom - project requirement -->
+  <!-- Footer at the bottom - project requirement -->
   <footer>
-    © 2025 Dhuha Alghamdi &nbsp;·&nbsp; CPIT405 Internet Applications &nbsp;·&nbsp; King Abdulaziz University
+    © 2025 Dhuha Alghamdi &nbsp;·&nbsp; CPIT405 Internet Applications &nbsp;·&nbsp; ID: 2207256
   </footer>
 
 </div>
